@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 
-const db=require('./model/db');
-const Data = require("./data");
+const db=require('../schema/db');
+const User = require("../schema/user");
 
 const API_PORT = 3001;
 const app = express();
@@ -18,46 +18,25 @@ app.use(logger("dev"));
 // this is our get method
 // this method fetches all available data in our database
 router.get("/getData", (req, res) => {
-  Data.find((err, data) => {
+  User.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
 });
 
-// this is our update method
-// this method overwrites existing data in our database
-router.post("/updateData", (req, res) => {
-  const { id, update } = req.body;
-  Data.findOneAndUpdate(id, update, err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true });
-  });
-});
-
-// this is our delete method
-// this method removes existing data in our database
-router.delete("/deleteData", (req, res) => {
-  const { id } = req.body;
-  Data.findOneAndDelete(id, err => {
-    if (err) return res.send(err);
-    return res.json({ success: true });
-  });
-});
-
-// this is our create methid
-// this method adds new data in our database
-router.post("/putData", (req, res) => {
+//addUser
+router.post("/addUser", (req, res) => {
   let data = new Data();
 
-  const { id, message } = req.body;
+  const { userName } = req.body;
 
-  if ((!id && id !== 0) || !message) {
+  if ((!userName) {
     return res.json({
       success: false,
       error: "INVALID INPUTS"
     });
   }
-  data.message = message;
+  data.userName = userName;
   data.id = id;
   data.save(err => {
     if (err) return res.json({ success: false, error: err });
