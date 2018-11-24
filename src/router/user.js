@@ -1,5 +1,7 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+
+const User = require("../schema/user");
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -12,6 +14,7 @@ router.get('/', function (req, res) {
 })
 // define the about route
 router.get('/new', function (req, res) {
+	
   res.send('New users')
 })
 
