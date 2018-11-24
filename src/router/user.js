@@ -14,7 +14,6 @@ router.get('/', function (req, res) {
 })
 // define the about route
 router.get('/new', function (req, res) {
-	
   res.send('New users')
 })
 

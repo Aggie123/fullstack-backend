@@ -1,15 +1,9 @@
-const express = require("express");
-const app = express();
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const API_PORT = 3001;
+// define the home page route
+router.get('/', function (req, res) {
+  res.send('Welcome Home!')
+})
 
-var user = require('./user')
-// import user from './user'
-
-
-
-app.use('/user', user)
-
-// launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+module.exports = router
