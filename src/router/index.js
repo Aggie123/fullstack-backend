@@ -1,9 +1,12 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const app = express();
 
-// define the home page route
-router.get('/', function (req, res) {
-  res.send('Welcome Home!')
-})
+//import router module
+let home = require('./home')
+let user = require('./user')
 
-module.exports = router
+
+app.use('/',home)
+app.use('/user', user)
+
+module.exports = app
