@@ -6,7 +6,7 @@ let home = require('./home')
 let user = require('./user')
 
 
-app.use('/',home)
-app.use('/user', user)
+app.use('/api',home)
+app.use('/api/user', user)
 
 module.exports = app
