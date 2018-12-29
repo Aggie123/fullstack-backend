@@ -7,7 +7,7 @@ const dbName = 'sunshine';
 const mongoDBTestUrl = "mongodb://localhost:27017/sunshine";
 
 //online database api
-const mongoDBUrl = 'mongodb://<Aggie123>:<Aggie123>@ds143594.mlab.com:43594/sunshine';
+const mongoDBUrl = 'mongodb://nana:nana123@ds143594.mlab.com:43594/sunshine';
 
 mongoose.connect(mongoDBUrl);
 
@@ -19,8 +19,13 @@ db.once("open", () => console.log("connected to the database"));
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-MongoClient.connect(url,(err,db)=>{
-	
+/*
+create additional connections 
+*/
+//mongoose.createConnection()
+
+/*MongoClient.connect(url,(err,db)=>{
+
 	if(err) throw err;
 
 	console.log('mgdb created!');
@@ -29,4 +34,4 @@ MongoClient.connect(url,(err,db)=>{
 
 	db.close;
 
-})
+})*/

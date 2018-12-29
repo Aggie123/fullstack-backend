@@ -17,36 +17,58 @@ router.get('/', function (req, res) {
   res.send('User home page')
 })
 
+// define the about route
+router.get('/about', function(req, res) {
+  res.send('About user');
+});
 
 router.get('/list', function (req, res) {
+	// res.send('user list');
   User.find((err, data) => {
-  	console.log('list0')
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
 })
 
-router.post('/new', function (req, res) {
-  let data = new User();
+router.post('/test', function(req,res){
+	return console.log('req',req)
+	// return res.json({req:req.body})
+})
 
-  const { id, name, age } = req.body;
+router.post('/new', function (req , res) {
 
-  if ((!id && id !== 0) || !name) {
+  // res.send(req.body)
+  const { /*id, */name, age } = req.body;
+
+  /*if ((!id && id !== 0) || !name) {
     return res.json({
       success: false,
       error: "INVALID INPUTS"
     });
-  }
-  data.name = name;
-  data.id = id;
-  data.age = age;
+  }*/
 
-  data.save(err => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data:data });
+  let data = new User({
+  	name:name,
+  	age:age
   });
 
-  //res.send('New users')
+  res.send(data);
+
+  data.save((err,data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data:data });
+    //res.redirect('user/list');
+  });
+
 })
+
+/*router.get('/edit/:id',(req,res,next)=>{
+	let { id } = req.params;
+
+	User.findOne({_id:id},(err,data)=>{
+		res.render('UserEdit',{
+			user:data
+		})
+	})*/
 
 module.exports = router
