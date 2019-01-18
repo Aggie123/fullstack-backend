@@ -2,9 +2,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//connected to database
-// var db = mongoose.connect('mongodb://localhost/chihuo');//；连接数据库
-
 //data structure 
 const userSchema = new Schema(
   {
@@ -16,4 +13,5 @@ const userSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("user", userSchema);
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+// module.exports = mongoose.model("user", userSchema);

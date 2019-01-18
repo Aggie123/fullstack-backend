@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const User = require("../model/user");
+const Models = require("../model");
+const User = Models.User;
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -25,6 +26,7 @@ router.get('/about', function(req, res) {
 router.get('/list', function (req, res) {
 	// res.send('user list');
   User.find((err, data) => {
+    console.log('list data',data);
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
@@ -56,8 +58,8 @@ router.post('/new', function (req , res) {
 
   data.save((err,data) => {
     if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data:data });
-    //res.redirect('user/list');
+    // return res.json({ success: true, data:data });
+    res.redirect('user/list');
   });
 
 })

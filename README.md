@@ -1,4 +1,7 @@
 ###
+###How to start
+1. npm run test
+2. connected to mongodb database
 
 ###How to manage mongodb
 1. connected to mongodb database
@@ -7,3 +10,7 @@
 `db.testCollection.insert({'name':'Jim'})`
 3. get collection info
 `db.testCollection.find()`
+
+show dbs
+show collections
+db.user.insert({'name':'Alice',age:'1'})
