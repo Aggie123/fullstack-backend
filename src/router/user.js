@@ -58,8 +58,8 @@ router.post('/new', function (req , res) {
 
   data.save((err,data) => {
     if (err) return res.json({ success: false, error: err });
-    // return res.json({ success: true, data:data });
-    res.redirect('user/list');
+    return res.json({ success: true, data:data });
+    // res.redirect('user/list');
   });
 
 })
